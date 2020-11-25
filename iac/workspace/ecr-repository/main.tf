@@ -29,7 +29,7 @@ data "aws_vpc" "vpc" {
   }
 }
 
-module "alb" {
+module "ecr_repository_api" {
   source = "../../modules/ecr-repository"
 
   name = "api-ecr-repository"
