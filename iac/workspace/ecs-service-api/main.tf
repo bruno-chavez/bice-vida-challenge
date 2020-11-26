@@ -61,6 +61,6 @@ module "ecs_service_api" {
   alb_security_group_id = data.aws_security_group.alb_sg.id
 
   name         = "api"
-  path_pattern = "/api"
+  path_pattern = "/api*"
   port         = 8080
 }
