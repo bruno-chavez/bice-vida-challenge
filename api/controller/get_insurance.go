@@ -7,12 +7,12 @@ import (
 	"net/http"
 )
 
-func (h Controller) GetInsurance() httprouter.Handle {
+func (c Controller) GetInsurance() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 		w.Header().Set("Content-Type", "application/json")
 
-		insurance, err := h.getter.Insurance()
+		insurance, err := c.getter.Insurance()
 		if err != nil {
 			log.Println(err)
 

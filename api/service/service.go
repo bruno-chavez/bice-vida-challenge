@@ -1,15 +1,17 @@
 package service
 
 type getter interface {
-	Insurance() (Insurance, error)
+	GetInsurance(string) (Insurance, error)
 }
 
 type service struct {
 	getter getter
+	url    string
 }
 
-func NewService(getter getter) *service {
+func NewService(getter getter, url string) *service {
 	return &service{
 		getter: getter,
+		url:    url,
 	}
 }

@@ -1,6 +1,6 @@
 package service
 
-type body struct {
+type Body struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Price       string `json:"price"`
@@ -8,15 +8,5 @@ type body struct {
 }
 
 type Insurance struct {
-	Body body `json:"insurance"`
-}
-
-func (s service) Insurance() (Insurance, error) {
-
-	insurance, err := s.getter.Insurance()
-	if err != nil {
-		return insurance, err
-	}
-
-	return insurance, nil
+	Body Body `json:"insurance"`
 }

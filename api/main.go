@@ -16,9 +16,7 @@ func main() {
 	log.SetFlags(log.LstdFlags | log.Llongfile)
 
 	repo := repository.NewRepository(repository.NewHttpClient())
-
-	s := service.NewService(repo)
-
+	s := service.NewService(repo, "https://dn8mlk7hdujby.cloudfront.net/interview/insurance/58")
 	c := controller.NewController(s)
 
 	handler, err := server.MakeHandler(c)
