@@ -10,10 +10,10 @@ func MakeHandler(controller *controller.Controller) (http.Handler, error) {
 
 	router := httprouter.New()
 
-	router.GET("/", controller.GetInsurance())
+	router.GET("/api", controller.GetInsurance())
 
 	// health check
-	router.GET("/health", func(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
+	router.GET("/api/health", func(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
