@@ -8,12 +8,12 @@ import (
 	"net/http"
 )
 
-func (r insuranceGetter) Insurance() (service.Insurance, error) {
+func (r insuranceGetter) GetInsurance(url string) (service.Insurance, error) {
 
 	log.Println("getting insurance from service")
 
 	var insurance service.Insurance
-	response, err := r.httpClient.Get("https://dn8mlk7hdujby.cloudfront.net/interview/insurance/58")
+	response, err := r.httpClient.Get(url)
 	if err != nil {
 		return insurance, fmt.Errorf("network error requesting insurance: %w", err)
 	}
