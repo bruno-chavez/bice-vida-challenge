@@ -39,6 +39,7 @@ data "aws_alb" "alb" {
 
 data "aws_alb_listener" "alb_listener" {
   load_balancer_arn = data.aws_alb.alb.arn
+  port              = 80
 }
 
 data "aws_security_group" "alb_sg" {
@@ -52,11 +53,10 @@ data "aws_ecs_task_definition" "api" {
 module "ecs_service_api" {
   source = "../../modules/ecs-service"
 
-  region = "us-east-2"
   vpc_id = data.aws_vpc.vpc.id
 
   cluster_id            = data.aws_ecs_cluster.cluster.id
-  alb_listener_arn      = data.aws_alb.alb.arn
+  alb_listener_arn      = data.aws_alb_listener.alb_listener.arn
   task_definition       = data.aws_ecs_task_definition.api.task_definition
   alb_security_group_id = data.aws_security_group.alb_sg.id
 
