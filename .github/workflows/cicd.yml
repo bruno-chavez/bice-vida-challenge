@@ -3,7 +3,29 @@ on: [workflow_dispatch]
 name: CI/CD
 
 jobs:
-  deploy:
+  build-scan-test:
+    name: Build Scan Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          go build
+
+      - uses: actions/checkout@v2
+      - name: Scan
+        uses: actions-contrib/golangci-lint@v1
+
+      - name: Test
+        run: |
+          wget https://github.com/mfridman/tparse/releases/download/v0.8.3/tparse_0.8.3_Linux_x86_64.tar.gz -O tparse.tar.gz
+          tar xvzf tparse.tar.gz
+          go test ./... -json -cover | ./tparse
+
+  push-ecr-image:
     name: Build ECR Image
     runs-on: ubuntu-latest
 
