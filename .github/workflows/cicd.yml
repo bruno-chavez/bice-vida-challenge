@@ -20,9 +20,9 @@ jobs:
           go build
 
       - name: Lint
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.33
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.33.0
+          golangci-lint run
 
       - name: Test
         run: |
