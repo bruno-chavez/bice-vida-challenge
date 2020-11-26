@@ -8,7 +8,7 @@ defaults:
 
 jobs:
   cicd:
-    name: Build Scan Test
+    name: CI/CD
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,6 @@ jobs:
         run: |
           go build
 
-      - uses: actions/checkout@v2
       - name: Scan
         uses: actions-contrib/golangci-lint@v1
 
