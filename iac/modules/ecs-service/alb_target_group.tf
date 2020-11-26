@@ -6,4 +6,8 @@ resource "aws_alb_target_group" "target_group" {
   protocol             = "HTTP"
   target_type          = "ip"
   deregistration_delay = 30
+
+  health_check {
+    path = "/health"
+  }
 }
