@@ -1,3 +1,7 @@
+# API
+Un unico endpoint disponible el cual consume y expone el endpoint requerido para el challenge.
+http://bice-vida-alb-1015104427.us-east-2.elb.amazonaws.com/api
+
 # Stack
 + Go para la API REST
 + Docker
@@ -5,10 +9,15 @@
 + Terraform para el provisionamiento de infraestructura
 + GitHub Actions para CI/CD
 
-# Pipeline
-## Composicion
-Un unico pipeline encargado de hacer las tareas de CI y CD  de manera secuencial, para asegurar la calidad de codigo y evitar llevar codigo indebido a un ambiente.
+# Arquitectura
+![](resources/infra.png)
 
+# Pipelines
+El proyecto cuenta con dos pipeline cuyo codigo se encuentra detallado en `.github/workflows/`: 
++ `ci.yml`: para hacer tareas de CI en paralelo para feedback loops rapidos entre commits de ramas feature.
++ `cicd.yml`: encargado de CI y CD de manera secuencial en master, para asegurar la calidad de codigo y evitar llevar codigo indebido a un ambiente.
+
+## Composicion
 Podemos descomponer cada step de CI y CD de la siguiente manera:
 ### CI
 #### Checkout
@@ -55,7 +64,6 @@ se hara cuando el PR se una con master.
 La ventaja de esto es que podemos revisar la integracion del PR con lo que hay en master y asegurarse de que sea una union exitosa y solamente despues de esta revision llevar los cambios a algun ambiente.
 
 # IaC
-
 Todo el codigo para el provisionamiento de la infrastructura se encuentra dentro de `iac`, 
 el cual esta dividido en `modules` y `workspaces` siendo el primero la carpeta donde se encuentran los modulos y el segundo donde se utilizan estos. 
 La ejecucion de los workspaces fue desde mi local con el cli de Terraform.
