@@ -18,7 +18,7 @@ func MakeHandler(controller *controller.Controller) (http.Handler, error) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 
-		info := []byte(`{"version": "0.0.2"}`)
+		info := []byte(`{"version": "0.0.3"}`)
 
 		_, err := w.Write(info)
 		if err != nil {
