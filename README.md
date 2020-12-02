@@ -13,6 +13,10 @@ http://bice-vida-alb-1015104427.us-east-2.elb.amazonaws.com/api
 ![](resources/infra.png)
 
 # Pipelines
+Para este proyecto utilice [GitHub Actions](https://github.com/features/actions) simplemente por desafio personal, ya que nunca lo habia utilizado y ademas de tener beneficios extra como la comodidad en la integracion que tiene con el repositorio y los modulos oficiales para deployar ECS Tasks.
+
+El historial de ejecuciones se puede observar [aqui](https://github.com/bruno-chavez/bice-vida-challenge/actions).
+
 El proyecto cuenta con dos pipeline cuyo codigo se encuentra detallado en `.github/workflows/`: 
 + `ci.yml`: para hacer tareas de CI en paralelo para feedback loops rapidos entre commits de ramas feature.
 + `cicd.yml`: encargado de CI y CD de manera secuencial en master, para asegurar la calidad de codigo y evitar llevar codigo indebido a un ambiente.
